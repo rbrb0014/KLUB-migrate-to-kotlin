@@ -1,20 +1,18 @@
 package com.kotlinApiTutorial.controller
 
 import com.kotlinApiTutorial.entity.User
-import com.kotlinApiTutorial.repository.UserRepository
+import com.kotlinApiTutorial.service.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/user")
-class UserController(
-    val userRepository: UserRepository
-) {
+class UserController(val userService: UserService) {
     @GetMapping
     fun getUsers(): ResponseEntity<*> {
-        val users = userRepository.findAll()
+        val users = userService.findThemAll()
 
-        return ResponseEntity.ok(users)
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/help")
@@ -24,7 +22,7 @@ class UserController(
 
     @PostMapping
     fun setUser(@RequestBody user: User): ResponseEntity<*> {
-        val res = userRepository.save(user)
+        val res = userService.saveThis(user);
 
         return ResponseEntity.ok(res)
     }

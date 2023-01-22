@@ -1,7 +1,7 @@
 package com.kotlinApiTutorial.entity
 
-import com.kotlinApiTutorial.common.category
-import com.kotlinApiTutorial.common.clubType
+import com.kotlinApiTutorial.common.Category
+import com.kotlinApiTutorial.common.ClubType
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -9,17 +9,15 @@ import java.time.LocalDateTime
 @Table(schema = "klub")
 data class Club(
     @Id
-    @GeneratedValue()
-    var id: Long = 1,
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
+    val id: Long = 0L,
 
     @Column(length = 20, unique = true)
     var name: String,
 
-    @Column()
-    var category: category? = null,
-
-    @Column()
-    var type: clubType? = null,
+    var category: Category? = null,
+    var type: ClubType? = null,
 
     @Column(length = 60)
     var description: String? = null,
@@ -27,9 +25,31 @@ data class Club(
     @Column(length = 30)
     var location: String? = null,
 
-    @Column
-    var createdAt: LocalDateTime = LocalDateTime.now(),
-
-    @Column
+    val createdAt: LocalDateTime = LocalDateTime.now(),
     var deletedAt: LocalDateTime? = null,
+
+    @OneToMany(cascade = [CascadeType.ALL])
+    @JoinColumn
+    @OrderBy("startAt")
+    var conferences: MutableList<Conference>,
+
+    @OneToMany(cascade = [CascadeType.ALL])
+    @JoinColumn
+    @OrderBy("createdAt")
+    var clubMembers: MutableList<ClubMember>,
+
+    @OneToMany(cascade = [CascadeType.ALL])
+    @JoinColumn
+    @OrderBy("createdAt")
+    var fees: MutableList<Fee>,
+
+    @OneToMany(cascade = [CascadeType.ALL])
+    @JoinColumn
+    @OrderBy("createdAt")
+    var reviews: MutableList<Review>,
+
+    @OneToMany(cascade = [CascadeType.ALL])
+    @JoinColumn
+    @OrderBy("createdAt")
+    var recruits: MutableList<Recruit>,
 )
