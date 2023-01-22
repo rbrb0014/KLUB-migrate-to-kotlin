@@ -7,20 +7,21 @@ import java.time.LocalDateTime
 @Table(schema = "klub")
 data class User(
     @Id
-    @GeneratedValue()
-    var id: Long = 0,
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
+    val id: Long = 0L,
 
     @Column(length = 20)
-    var name: String = "",
+    var name: String,
 
     @Column(length = 20, unique = true)
-    var studentId: String = "",
+    var studentId: String,
 
     @Column(length = 30)
     var phoneNumber: String = "",
 
     @Column(length = 50, unique = true)
-    var email: String = "",
+    var email: String,
 
     @Column(length = 20, nullable = true)
     var department: String? = null,
@@ -28,18 +29,36 @@ data class User(
     @Column(length = 20, nullable = true)
     var nickname: String? = null,
 
-    @Column
-    var isAuthenticated: Boolean = false,
-
     @Column(length = 200)
     var password: String? = null,
 
-    @Column
+    var isAuthenticated: Boolean = false,
     var refreshToken: String? = null,
-
-    @Column
-    var createdAt: LocalDateTime = LocalDateTime.now(),
-
-    @Column
+    val createdAt: LocalDateTime = LocalDateTime.now(),
     var deletedAt: LocalDateTime? = null,
+
+    @OneToMany(cascade = [CascadeType.ALL])
+    @JoinColumn
+    @OrderBy("createdAt")
+    var applies: MutableList<Apply>,
+
+    @OneToMany(cascade = [CascadeType.ALL])
+    @JoinColumn
+    @OrderBy("createdAt")
+    var attendances: MutableList<Attendance>,
+
+    @OneToMany(cascade = [CascadeType.ALL])
+    @JoinColumn
+    @OrderBy("createdAt")
+    var clubMembers: MutableList<ClubMember>,
+
+    @OneToMany(cascade = [CascadeType.ALL])
+    @JoinColumn
+    @OrderBy("createdAt")
+    var fees: MutableList<Fee>,
+
+    @OneToMany(cascade = [CascadeType.ALL])
+    @JoinColumn
+    @OrderBy("createdAt")
+    var reviews: MutableList<Review>,
 )
