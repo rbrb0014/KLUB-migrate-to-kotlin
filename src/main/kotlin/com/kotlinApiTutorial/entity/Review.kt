@@ -6,8 +6,8 @@ import java.time.LocalDateTime
 
 @Entity(name = "review")
 @Table(
-    schema = "klub", uniqueConstraints = [
-        UniqueConstraint(name = "UniqueReview", columnNames = ["club_id", "user_id"])]
+    schema = "klub",
+    uniqueConstraints = [jakarta.persistence.UniqueConstraint(columnNames = ["club_id", "user_id"])]
 )
 data class Review(
     @Id

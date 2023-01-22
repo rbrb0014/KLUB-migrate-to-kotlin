@@ -24,7 +24,7 @@ data class Recruit(
     var startAt: LocalDateTime,
     var endAt: LocalDateTime? = null,
 
-    var limit: Int? = null,
+    var limitation: Int? = null,
 
     @Column(length = 600)
     var question: String? = null,
@@ -38,6 +38,6 @@ data class Recruit(
 
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn
-    @OrderBy("startAt")
+    @OrderBy("createdAt")
     var applies: MutableList<Apply>,
 )

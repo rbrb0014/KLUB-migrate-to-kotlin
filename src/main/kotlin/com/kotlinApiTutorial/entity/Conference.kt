@@ -27,6 +27,6 @@ data class Conference(
 
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn
-    @OrderBy("startAt")
+    @OrderBy("createdAt")
     var attendances: MutableList<Attendance>,
 )

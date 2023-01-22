@@ -7,8 +7,8 @@ import java.time.LocalDateTime
 
 @Entity(name = "apply")
 @Table(
-    schema = "klub", uniqueConstraints = [
-        UniqueConstraint(name = "UniqueApply", columnNames = ["recruit_id", "user_id"])]
+    schema = "klub",
+    uniqueConstraints = [UniqueConstraint(columnNames = ["recruit_id", "user_id"])]
 )
 data class Apply(
     @Id
