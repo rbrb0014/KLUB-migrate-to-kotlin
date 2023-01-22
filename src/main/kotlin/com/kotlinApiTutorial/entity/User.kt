@@ -8,19 +8,19 @@ import java.time.LocalDateTime
 data class User(
     @Id
     @GeneratedValue()
-    var id: Long = 0,
+    var id: Long = 1,
 
     @Column(length = 20)
-    var name: String = "",
+    var name: String,
 
     @Column(length = 20, unique = true)
-    var studentId: String = "",
+    var studentId: String,
 
     @Column(length = 30)
     var phoneNumber: String = "",
 
     @Column(length = 50, unique = true)
-    var email: String = "",
+    var email: String,
 
     @Column(length = 20, nullable = true)
     var department: String? = null,
