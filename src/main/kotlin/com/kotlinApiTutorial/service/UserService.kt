@@ -1,5 +1,6 @@
 package com.kotlinApiTutorial.service
 
+import com.kotlinApiTutorial.dto.UserDto
 import com.kotlinApiTutorial.entity.User
 import com.kotlinApiTutorial.repository.UserRepository
 import org.springframework.stereotype.Service
@@ -12,7 +13,8 @@ class UserService(
         return userRepository.findAll()
     }
 
-    fun saveThis(user: User): User {
-        return userRepository.save(user)
+    fun saveThis(user: UserDto) {
+        userRepository.findAllByUserName("")
+        return userRepository.saveThis(user.toEntity())
     }
 }

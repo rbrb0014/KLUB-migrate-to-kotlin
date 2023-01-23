@@ -31,25 +31,25 @@ data class Club(
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn
     @OrderBy("startAt")
-    var conferences: MutableList<Conference>,
+    var conferences: MutableList<Conference>? = null,
 
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn
     @OrderBy("createdAt")
-    var clubMembers: MutableList<ClubMember>,
+    var clubMembers: MutableList<ClubMember>? = null,
 
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn
     @OrderBy("createdAt")
-    var fees: MutableList<Fee>,
+    var fees: MutableList<Fee>? = null,
 
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn
     @OrderBy("createdAt")
-    var reviews: MutableList<Review>,
+    var reviews: MutableList<Review>? = null,
 
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn
     @OrderBy("createdAt")
-    var recruits: MutableList<Recruit>,
+    var recruits: MutableList<Recruit>? = null,
 )

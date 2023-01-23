@@ -1,6 +1,6 @@
 package com.kotlinApiTutorial.controller
 
-import com.kotlinApiTutorial.entity.User
+import com.kotlinApiTutorial.dto.UserDto
 import com.kotlinApiTutorial.service.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -21,7 +21,7 @@ class UserController(val userService: UserService) {
     }
 
     @PostMapping
-    fun setUser(@RequestBody user: User): ResponseEntity<*> {
+    fun setUser(@RequestBody user: UserDto): ResponseEntity<*> {
         val res = userService.saveThis(user);
 
         return ResponseEntity.ok(res)

@@ -40,25 +40,25 @@ data class User(
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn
     @OrderBy("createdAt")
-    var applies: MutableList<Apply>,
+    var applies: MutableList<Apply>? = null,
 
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn
     @OrderBy("createdAt")
-    var attendances: MutableList<Attendance>,
+    var attendances: MutableList<Attendance>? = null,
 
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn
     @OrderBy("createdAt")
-    var clubMembers: MutableList<ClubMember>,
+    var clubMembers: MutableList<ClubMember>? = null,
 
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn
     @OrderBy("createdAt")
-    var fees: MutableList<Fee>,
+    var fees: MutableList<Fee>? = null,
 
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn
     @OrderBy("createdAt")
-    var reviews: MutableList<Review>,
+    var reviews: MutableList<Review>? = null,
 )

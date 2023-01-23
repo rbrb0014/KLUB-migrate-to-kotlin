@@ -39,5 +39,5 @@ data class Recruit(
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn
     @OrderBy("createdAt")
-    var applies: MutableList<Apply>,
+    var applies: MutableList<Apply>? = null,
 )
